@@ -1,0 +1,18 @@
+\BOOKMARK [0][-]{chapter.1}{Introdu\347\343o}{}% 1
+\BOOKMARK [0][-]{chapter.2}{Metodologia}{}% 2
+\BOOKMARK [1][-]{section.2.1}{Linguagem}{chapter.2}% 3
+\BOOKMARK [1][-]{section.2.2}{C\363digo}{chapter.2}% 4
+\BOOKMARK [2][-]{subsection.2.2.1}{Bibliotecas Utilizadas}{section.2.2}% 5
+\BOOKMARK [2][-]{subsection.2.2.2}{Valida\347\343o dos Argumentos}{section.2.2}% 6
+\BOOKMARK [2][-]{subsection.2.2.3}{Escolha do Servidor}{section.2.2}% 7
+\BOOKMARK [2][-]{subsection.2.2.4}{Teste de Lat\352ncia}{section.2.2}% 8
+\BOOKMARK [2][-]{subsection.2.2.5}{Teste de largura de banda}{section.2.2}% 9
+\BOOKMARK [2][-]{subsection.2.2.6}{Escrita dos resultados num ficheiro CSV}{section.2.2}% 10
+\BOOKMARK [2][-]{subsection.2.2.7}{Assinatura do ficheiro CSV}{section.2.2}% 11
+\BOOKMARK [0][-]{chapter.3}{Testes de Depura\347\343o}{}% 12
+\BOOKMARK [1][-]{section.3.1}{Argumentos}{chapter.3}% 13
+\BOOKMARK [1][-]{section.3.2}{Conex\343o ao servidor}{chapter.3}% 14
+\BOOKMARK [1][-]{section.3.3}{Escrita do Ficheiro CSV}{chapter.3}% 15
+\BOOKMARK [1][-]{section.3.4}{Assinatura Digital}{chapter.3}% 16
+\BOOKMARK [0][-]{chapter.4}{Resultados}{}% 17
+\BOOKMARK [0][-]{chapter.5}{Conclus\365es}{}% 18

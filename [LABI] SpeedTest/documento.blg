@@ -1,0 +1,15 @@
+[0] Config.pm:302> INFO - This is Biber 2.11
+[0] Config.pm:305> INFO - Logfile is 'documento.blg'
+[43] biber-darwin:313> INFO - === Thu Apr 25, 2019, 08:50:49
+[70] Biber.pm:371> INFO - Reading 'documento.bcf'
+[183] Biber.pm:857> INFO - Found 5 citekeys in bib section 0
+[198] Biber.pm:3976> INFO - Processing section 0
+[210] Biber.pm:4136> INFO - Looking for bibtex format file 'bibliografia.bib' for section 0
+[215] bibtex.pm:1500> INFO - LaTeX decoding ...
+[222] bibtex.pm:1316> INFO - Found BibTeX data source 'bibliografia.bib'
+[255] UCollate.pm:68> INFO - Overriding locale 'pt-PT' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[255] UCollate.pm:68> INFO - Overriding locale 'pt-PT' defaults 'variable = shifted' with 'variable = non-ignorable'
+[255] Biber.pm:3804> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'pt-PT'
+[255] Biber.pm:3810> INFO - No sort tailoring available for locale 'pt-PT'
+[266] bbl.pm:617> INFO - Writing 'documento.bbl' with encoding 'UTF-8'
+[269] bbl.pm:720> INFO - Output to documento.bbl
