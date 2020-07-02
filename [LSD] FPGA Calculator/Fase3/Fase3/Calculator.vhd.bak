@@ -1,0 +1,310 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+use ieee.numeric_std.all;
+
+entity Calculator is
+   port(CLOCK_50 : in  std_logic;
+        KEY      : in  std_logic_vector(3 downto 0);
+        SW       : in  std_logic_vector(17 downto 0);
+		  HEX0     : out std_logic_vector(6 downto 0);
+		  HEX1     : out std_logic_vector(6 downto 0);
+		  HEX2     : out std_logic_vector(6 downto 0);
+		  HEX3     : out std_logic_vector(6 downto 0);
+		  HEX4     : out std_logic_vector(6 downto 0);
+		  HEX5     : out std_logic_vector(6 downto 0);
+		  LEDG     : out std_logic_vector(7 downto 0);
+        LEDR     : out std_logic_vector(17 downto 0));
+end Calculator;
+
+architecture Structural of Calculator is
+
+   signal s_add, s_sub, s_mult, s_div, s_start, s_checkSigned, s_sqrt,s_sw16, s_reset    : std_logic;
+	signal s_overflow_sum, s_overflow_sub, s_overflow                                     : std_logic;
+	signal s_key0, s_key1, s_key2, s_key3, s_sqrtkey                                      : std_logic;
+	signal s_sign_sum, s_sign_sub, s_sign_mult_div, s_sign, s_op0sign,  s_op1sign         : std_logic;
+   signal s_multDone, s_divDone, s_sqrtDone                                              : std_logic;
+	signal s_mode                                                                         : std_logic_vector(1 downto 0);
+	signal s_operand0, s_operand1, s_foperand0, s_foperand1                               : std_logic_vector(7 downto 0);
+	signal s_multResult, s_finalResult, s_sqrtResult                                      : std_logic_vector(15 downto 0);
+	signal s_divQuotient                                                                  : std_logic_vector(7 downto 0);
+   signal s_sumResult,s_subResult                                                        : std_logic_vector(7 downto 0);
+	signal s_clk1hz                                                                       : std_logic;
+
+
+begin
+   process(CLOCK_50)
+   begin
+      if (rising_edge(CLOCK_50)) then
+			
+			s_operand0    <= SW(15 downto 8);
+			s_operand1    <= SW(7 downto 0);
+			LEDR(15 downto 0) <= s_finalResult;			
+			
+			 --So para Waveform--
+			
+
+			--if(KEY(0) = '1') then
+			
+			--	s_key0 <= not s_key0;-- mudar para botao
+			
+			--end if;
+			
+			--if(KEY(1) = '1') then
+			
+			--	s_key1 <= not s_key1;-- mudar para botao
+			
+			--end if;
+			--if(KEY(2) = '1') then
+			
+			--	s_key2 <= not s_key2;-- mudar para botao
+			
+			--end if;
+			
+			--if(KEY(3) = '1') then -- mudar para botao
+			
+			--	s_key3 <= not s_key3;
+				
+			--end if;
+			
+			--*****************--
+			
+         s_start  <= '0';
+			
+		if(SW(16) = '0') then
+		
+         if(s_key1 = '1') then
+				
+				--s_key1 <= '0';  -- Apagar
+				s_mode <= "01";
+				s_start <= '1';
+				
+			elsif(s_key2 = '1') then
+				
+				--s_key2 <= '0';  -- Apagar
+				s_mode <= "10";
+				s_start <= '1';
+				
+			elsif(s_key3 = '1') then
+			   
+				--s_key3 <= '0'; -- Apagar
+				s_mode <= "11";
+				s_start <= '1';
+				
+			elsif(s_key0 = '1') then
+				
+				--s_key0 <= '0';  -- Apagar
+				s_mode <= "00";
+				s_start <= '1';
+				
+			end if;
+		
+			case s_mode is
+				when "00" =>
+				   s_sign <= s_sign_sum;
+					s_overflow <= s_overflow_sum;
+					if(s_overflow = '0') then --Dont display if Overflow
+						s_finalResult(15 downto 8) <= (others => '0');
+						s_finalResult(7 downto 0) <= s_sumResult;
+					end if;
+				when "01" =>
+				   s_sign <= s_sign_sub;
+					s_overflow <= s_overflow_sub;
+					if(s_overflow = '0') then --Dont display if Overflow
+						s_finalResult(15 downto 8) <= (others => '0');
+						s_finalResult(7 downto 0) <= s_subResult;
+					end if;
+				when "10" =>
+					s_overflow <= '0';
+				   s_sign <= s_sign_mult_div;
+					s_finalResult(15 downto 0) <= s_multResult;
+				when "11" =>
+				   s_sign <= s_sign_mult_div;
+					if(unsigned(s_operand0) = 0 or unsigned(s_operand1) = 0) then --Dont display if Overflow
+						s_finalResult(15 downto 0) <= (others => '0');
+						s_overflow <= '1';
+					else
+						s_finalResult(15 downto 8) <= (others => '0');
+					   s_finalResult(7 downto 0) <= s_divQuotient;
+						s_overflow <= '0';
+					end if;
+			end case;	
+			
+			else
+				
+				s_overflow <= '0';
+				s_finalResult(15 downto 0) <= s_sqrtResult;
+				
+		end if;
+			
+			--Led Blink Ovf--
+			if(s_clk1hz = '1') then 
+				if(s_overflow = '1') then
+					LEDR(0) <= '1';
+				else
+					LEDR(0) <= '0';
+				end if;
+			else
+				LEDR(0) <= '0';
+			end if;
+			--*************--
+			
+      end if;
+   end process;
+	
+	--Master Control Unit-- 
+	
+   CalcControlUnit : entity work.CalcControlUnit(Behavioral)
+      port map(clk         => CLOCK_50,
+               mode        => s_mode,
+					start_sqrt  => s_sw16,
+               start       => s_start,
+					sqrtDone    => s_sqrtDone,
+               divDone     => s_divDone,
+               multDone    => s_multDone,
+					reset       => s_reset,
+               addMode     => s_add,
+               subMode     => s_sub,
+               multMode    => s_mult,
+					sqrtMode    => s_sqrt,
+					checkSigned => s_checkSigned,
+					divMode     => s_div);
+	
+	--*******************--
+	
+	-- Core Functions | Multiplication | | Division | | Sum | | Subtraction | --
+
+   mult_core : entity work.IterMultCore(Structural)
+      generic map(numBits => 8)
+      port map(clk        => CLOCK_50,
+               reset      => '0',
+               start      => s_mult,
+               busy       => LEDG(0),
+               done       => s_multDone,
+               operand0   => s_foperand0,
+               operand1   => s_foperand1,
+               result     => s_multResult);
+
+
+   div_core : entity work.IterDivCore(Structural)
+      generic map(numBits => 8)
+      port map(clk        => CLOCK_50,
+               reset      => s_reset,
+               start      => s_div,
+               busy       => LEDG(2),
+               done       => s_divDone,
+               operand0   => s_foperand0,
+               operand1   => s_foperand1,
+               quotient   => s_divQuotient);
+
+	
+	add_core : entity work.AddCore(Behavioral)
+      generic map(N => 8)
+      port map(clk        => CLOCK_50,
+               start      => s_add,
+					sign       => s_sign_sum,
+               operand0   => s_operand0,
+               operand1   => s_operand1,
+					overf      => s_overflow_sum,
+               result     => s_sumResult);
+			
+			
+	sub_core : entity work.SubCore(Behavioral)
+      generic map(N => 8)
+      port map(clk        => CLOCK_50,
+               start      => s_sub,
+					sign       => s_sign_sub,
+               operand0   => s_operand0,
+               operand1   => s_operand1,
+					overf      => s_overflow_sub,
+               result     => s_subResult);
+	
+	sqrt_core : entity work.IterSqrtCore(Structural)
+      port map(clk        => CLOCK_50,
+               start      => s_sqrt,
+					reset      => s_reset,
+					busy       => LEDG(4),
+               done       => s_sqrtDone,
+               operand0   => SW(15 downto 0),
+               quotient   => s_sqrtResult);
+	
+	
+	--**************************************************************************--
+					
+	--Signed Transformation--
+		
+	 Two_c_to_Un: entity work.CheckSigned(Behavioral)
+      port map(clk        => CLOCK_50,
+               start      => s_checkSigned,
+					sign       => s_sign_mult_div,
+					op0sign    => s_op0sign,
+					op1sign    => s_op1sign,
+               operand0   => s_operand0,
+               operand1   => s_operand1,
+               fOperand0  => s_foperand0,
+					fOperand1  => s_foperand1);
+
+	--*********************--
+	
+	--Binary To 7 segments--
+	
+	BinTo7Seg : entity work.binto7segments(Behavioral)
+		generic map(numBits => 16)
+      port map(clk        => CLOCK_50,
+               binaryIn   => s_finalResult,
+					sign       => s_sign,
+					HEX0       => HEX0,
+               HEX1       => HEX1,
+               HEX2       => HEX2,
+               HEX3       => HEX3,
+					HEX4       => HEX4,
+					HEX5       => HEX5);
+	
+	--********************--
+	
+	--Debouncers--
+	
+	button0 : entity work.DebounceUnit(Behavioral)
+				generic map(inPolarity => '0',  --Mudar
+							outPolarity => '1')
+				port map(refClk => CLOCK_50,
+							dirtyIn => KEY(0),
+							pulsedOut => s_key0);
+	
+	button1 : entity work.DebounceUnit(Behavioral)
+				generic map(inPolarity => '0',  --Mudar
+							outPolarity => '1')
+				port map(refClk => CLOCK_50,
+							dirtyIn => KEY(1),
+							pulsedOut => s_key1);
+	
+	button2 : entity work.DebounceUnit(Behavioral)
+				generic map(inPolarity => '0',  --Mudar
+							outPolarity => '1')
+				port map(refClk => CLOCK_50,
+							dirtyIn => KEY(2),
+							pulsedOut => s_key2);
+	
+   button3 : entity work.DebounceUnit(Behavioral)
+		      generic map(inPolarity => '0',  --Mudar
+							outPolarity => '1')
+				port map(refClk => CLOCK_50,
+	 					   dirtyIn => KEY(3),
+							pulsedOut => s_key3);
+	
+	sw16    : entity work.DebounceUnit(Behavioral)
+	         generic map(inPolarity => '1',   --Mudar
+							   outPolarity => '1')
+				port map(refClk => CLOCK_50,
+	 					   dirtyIn => SW(16),
+							pulsedOut => s_sw16);
+							
+	--*********--
+	
+	EnableGenerator1hz : entity work.ClkDividerN(Behavioral)
+	         generic map(divFactor => 50000000)
+				port map(clkIn => CLOCK_50,
+							clkOut => s_clk1hz );
+	
+	
+	
+ end Structural;

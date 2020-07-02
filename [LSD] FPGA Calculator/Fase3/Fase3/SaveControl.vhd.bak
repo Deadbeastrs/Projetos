@@ -1,0 +1,80 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+
+entity SaveControl is
+   generic(numBits  : positive := 8);
+   port(clk         : in  std_logic;
+        reset       : in  std_logic;
+        start       : in  std_logic;
+        busy        : out std_logic;
+        done        : out std_logic;
+        mulplierLSb : in  std_logic;
+        regsInit    : out std_logic;
+        accEnable   : out std_logic;
+        regsShift   : out std_logic);
+end SaveControl;
+
+architecture funcao of SaveControl is
+
+   type TState is (ST_IDLE, ST_INIT, ST_BIT_TEST, ST_RES_ACC, ST_SHIFT);
+   signal s_state : TState;
+
+   subtype TCounter is natural range 0 to numBits;
+   signal s_iterCnt : TCounter;
+
+begin
+   process(clk)
+   begin
+      if (rising_edge(clk)) then
+         if (reset = '1') then
+            s_state   <= ST_IDLE;
+            busy      <= '0';
+            done      <= '1';
+            regsInit  <= '0';
+            accEnable <= '0';
+            regsShift <= '0';
+
+         else
+            case s_state is
+            when ST_IDLE =>
+               if (start = '1') then
+                  s_state  <= ST_INIT;
+                  busy     <= '1';
+                  done     <= '0';
+                  regsInit <= '1';
+               end if;
+               s_iterCnt <= 0;
+
+            when ST_INIT =>
+               s_state  <= ST_BIT_TEST;
+               regsInit <= '0';
+
+            when ST_BIT_TEST =>
+               if (mulplierLSb = '1') then
+                  s_state   <= ST_RES_ACC;
+                  accEnable <= '1';
+               else
+                  s_state   <= ST_SHIFT;
+                  regsShift <= '1';
+               end if;
+               s_iterCnt <= s_iterCnt + 1;
+
+            when ST_RES_ACC =>
+               s_state   <= ST_SHIFT;
+               accEnable <= '0';
+               regsShift <= '1';
+
+            when ST_SHIFT =>
+               if (s_iterCnt < numBits) then
+                  s_state <= ST_BIT_TEST;
+               else
+                  s_state <= ST_IDLE;
+                  busy    <= '0';
+                  done    <= '1';
+               end if;
+               regsShift <= '0';
+            end case;
+         end if;
+      end if;
+   end process;
+end funcao;

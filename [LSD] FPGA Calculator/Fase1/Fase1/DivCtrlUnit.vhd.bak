@@ -1,0 +1,85 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+ 
+entity DivCtrlUnit is
+   generic(numBits  : positive);
+   port(clk         : in  std_logic;
+        reset       : in  std_logic;
+        start       : in  std_logic;
+        busy        : out std_logic;        done        : out std_logic;
+        regsInit    : out std_logic;
+        regsShift   : out std_logic);
+end DivCtrlUnit;
+ 
+architecture Behavioral of DivCtrlUnit is
+type TState is (ST_IDLE, ST_INIT, ST_SUB, ST_ADDBIT, ST_SHIFT);
+signal s_currentState, s_nextState : TState;
+ 
+subtype TCounter is natural range 0 to numBits;
+signal s_iterCnt : TCounter;
+ 
+begin
+    process(clk)
+    begin
+        if(rising_edge(clk)) then
+            if(reset = '1') then
+                s_currentState <= ST_IDLE;
+            else
+                s_currentState <= s_nextState;
+            end if;
+        end if;
+    end process;
+   
+    process(s_currentState, start)
+    begin
+        s_nextState <= s_currentState;
+       
+        case s_currentState is
+       
+        when ST_IDLE =>
+            if(start = '1') then
+                s_nextState <= ST_INIT;
+            end if;
+       
+        when ST_INIT =>
+            s_nextState <= ST_SUB;
+           
+        when ST_SUB =>
+         if (s_iterCnt < numBits) then
+            s_nextState <= ST_ADDBIT;
+         else
+            s_nextState <= ST_IDLE;
+         end if;
+      end case;
+   end process;
+   
+ 
+    process(s_currentState)
+   begin
+      busy      <= '0';
+      done      <= '0';
+      regsInit  <= '0';
+      accEnable <= '0';
+      regsShift <= '0';
+ 
+      case s_currentState is
+      when ST_IDLE =>
+         done      <= '1';
+ 
+      when ST_INIT =>
+         busy      <= '1';
+         regsInit  <= '1';
+ 
+        when ST_SUB =>
+         busy      <= '1';
+   
+        when ST_ADDBIT =>
+         busy      <= '1';
+   
+      when ST_SHIFT =>
+         busy      <= '1';
+         regsShift <= '1';
+           
+      end case;
+   end process;
+end Behavioral;

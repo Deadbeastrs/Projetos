@@ -1,0 +1,79 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+
+entity Save_Ram_Control is
+   generic(numBits : positive := 8);
+   port(clk        : in  std_logic;
+        reset      : in  std_logic;
+        startWrite : in  std_logic;
+		  startRead  : in  std_logic;
+        busy       : out std_logic;
+		  saveDone   : out std_logic);
+end Save_Ram_Control;
+
+architecture Structural of Save_Ram_Control is
+
+   type TState is (ST_IDLE, ST_OP0Sign, ST_OP0, ST_OP, ST_OP1Sign, ST_OP1, ST_EQUAL, ST_RESULT, ST_RESULTSIGN, ST_OVERFLOW);
+	signal s_state : TState;
+
+   process(clk)
+   begin
+      if (rising_edge(clk)) then
+         if (reset = '1') then
+            s_state   <= ST_IDLE;
+            busy      <= '0';
+            done      <= '1';
+            regsInit  <= '0';
+            accEnable <= '0';
+            regsShift <= '0';
+
+         else
+            case s_state is
+            when ST_IDLE =>
+               if (startWrite = '1') then
+                  s_state  <= ST_OP0Sign;
+                  busy     <= '1';
+                  done     <= '0';
+               end if;
+
+            when ST_OP0Sign =>
+               s_state  <= ST_BIT_TEST;
+               regsInit <= '0';
+
+            when ST_OP0 =>
+               s_state  <= ST_BIT_TEST;
+               regsInit <= '0';
+				
+				when ST_OP =>
+               s_state  <= ST_BIT_TEST;
+               regsInit <= '0';
+				
+				when ST_OP1Sign =>
+               s_state  <= ST_BIT_TEST;
+               regsInit <= '0';
+				
+				when ST_OP1 =>
+               s_state  <= ST_BIT_TEST;
+               regsInit <= '0';
+				
+				when ST_EQUAL =>
+               s_state  <= ST_BIT_TEST;
+               regsInit <= '0';
+				
+				when ST_RESULT =>
+               s_state  <= ST_BIT_TEST;
+               regsInit <= '0';
+				
+				when ST_RESULTSIGN =>
+               s_state  <= ST_BIT_TEST;
+               regsInit <= '0';
+				
+				when ST_OVERFLOW =>
+               s_state  <= ST_BIT_TEST;
+               regsInit <= '0';
+            end case;
+         end if;
+      end if;
+   end process;
+   
+end Structural;

@@ -1,0 +1,24 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+
+entity AddCore is
+   generic(N         : positive := 8);
+   port(start       : in  std_logic;
+        clk         : in  std_logic;
+        result      : in  std_logic_vector((N - 1) downto 0);
+        operand0    : in  std_logic_vector((N - 1) downto 0);
+        operand1    : out std_logic_vector((N - 1) downto 0));
+end AddCore;
+
+architecture Behavioral of AddCore is
+
+begin
+
+   process(clk)
+   begin
+      if(rising_edge(clk)) then
+			result <= std_logic_vector(unsigned(operand0) + unsigned(operand1));
+		end if;
+   end process;
+
+end Behavioral;
