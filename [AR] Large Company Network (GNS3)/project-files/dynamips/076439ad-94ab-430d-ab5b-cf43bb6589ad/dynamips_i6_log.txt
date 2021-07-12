@@ -1,0 +1,56 @@
+May 27 15:42:01.970 HYPERVISOR: Release 0.2.21-amd64/Linux (tag 2019071212)
+May 27 15:42:01.970 HYPERVISOR: Started on IP = 127.0.0.1, TCP port = 36421.
+May 27 15:42:01.981 HYPERVISOR: exec_cmd: hypervisor version 
+May 27 15:42:01.981 HYPERVISOR: exec_cmd: hypervisor working_dir /home/luiscosta/3-Ano/AR/Projeto_Fase2_AR__92996_93134/project-files/dynamips 
+May 27 15:42:01.981 GENERAL: working_dir=/home/luiscosta/3-Ano/AR/Projeto_Fase2_AR__92996_93134/project-files/dynamips
+May 27 15:42:01.982 HYPERVISOR: exec_cmd: hypervisor working_dir /home/luiscosta/3-Ano/AR/Projeto_Fase2_AR__92996_93134/project-files/dynamips/076439ad-94ab-430d-ab5b-cf43bb6589ad 
+May 27 15:42:01.982 GENERAL: working_dir=/home/luiscosta/3-Ano/AR/Projeto_Fase2_AR__92996_93134/project-files/dynamips/076439ad-94ab-430d-ab5b-cf43bb6589ad
+May 27 15:42:01.982 HYPERVISOR: exec_cmd: vm create C_Av_2 6 c3725 
+May 27 15:42:01.983 VM: VM C_Av_2 created.
+May 27 15:42:01.984 HYPERVISOR: exec_cmd: vm set_con_tcp_port C_Av_2 5005 
+May 27 15:42:01.984 HYPERVISOR: exec_cmd: c3725 get_mac_addr C_Av_2 
+May 27 15:42:01.984 HYPERVISOR: exec_cmd: vm set_disk0 C_Av_2 1 
+May 27 15:42:01.985 HYPERVISOR: exec_cmd: vm get_status C_Av_2 
+May 27 15:42:01.986 HYPERVISOR: exec_cmd: vm set_idle_pc C_Av_2 0x60a68ca0 
+May 27 15:42:01.987 HYPERVISOR: exec_cmd: vm set_ios C_Av_2 /home/luiscosta/GNS3/images/IOS/c3725-advipservicesk9-mz.124-21.image 
+May 27 15:42:01.988 HYPERVISOR: exec_cmd: c3725 set_mac_addr C_Av_2 c206.38dc.0000 
+May 27 15:42:01.989 HYPERVISOR: exec_cmd: vm set_nvram C_Av_2 256 
+May 27 15:42:01.990 HYPERVISOR: exec_cmd: vm get_status C_Av_2 
+May 27 15:42:01.990 HYPERVISOR: exec_cmd: vm slot_add_binding C_Av_2 1 0 NM-16ESW 
+May 27 15:42:04.227 HYPERVISOR: exec_cmd: nio create_udp udp-42b40817-1286-4c46-bbb7-feb23ad3775c 10010 127.0.0.1 10011 
+May 27 15:42:04.456 HYPERVISOR: exec_cmd: vm slot_add_nio_binding C_Av_2 0 0 udp-42b40817-1286-4c46-bbb7-feb23ad3775c 
+May 27 15:42:04.457 HYPERVISOR: exec_cmd: vm get_status C_Av_2 
+May 27 15:42:10.490 HYPERVISOR: exec_cmd: nio create_udp udp-4b1ba819-a832-4299-a3cf-7b2198a7a27e 10088 127.0.0.1 10089 
+May 27 15:42:10.491 HYPERVISOR: exec_cmd: vm slot_add_nio_binding C_Av_2 1 3 udp-4b1ba819-a832-4299-a3cf-7b2198a7a27e 
+May 27 15:42:10.491 HYPERVISOR: exec_cmd: vm get_status C_Av_2 
+May 27 15:42:11.101 HYPERVISOR: exec_cmd: nio create_udp udp-c34b991d-104d-4b79-aceb-d3b1c27c2e17 10100 127.0.0.1 10101 
+May 27 15:42:11.102 HYPERVISOR: exec_cmd: vm slot_add_nio_binding C_Av_2 1 4 udp-c34b991d-104d-4b79-aceb-d3b1c27c2e17 
+May 27 15:42:11.103 HYPERVISOR: exec_cmd: vm get_status C_Av_2 
+May 27 15:42:11.328 HYPERVISOR: exec_cmd: nio create_udp udp-f584306d-97b5-4bdb-9b1d-6b0eff723628 10114 127.0.0.1 10115 
+May 27 15:42:11.330 HYPERVISOR: exec_cmd: vm slot_add_nio_binding C_Av_2 1 5 udp-f584306d-97b5-4bdb-9b1d-6b0eff723628 
+May 27 15:42:11.330 HYPERVISOR: exec_cmd: vm get_status C_Av_2 
+May 27 15:42:12.851 HYPERVISOR: exec_cmd: nio create_udp udp-6f3ea5ef-372e-4bcf-8d53-912db107fa27 10152 127.0.0.1 10153 
+May 27 15:42:12.852 HYPERVISOR: exec_cmd: vm slot_add_nio_binding C_Av_2 1 0 udp-6f3ea5ef-372e-4bcf-8d53-912db107fa27 
+May 27 15:42:12.852 HYPERVISOR: exec_cmd: vm get_status C_Av_2 
+May 27 15:42:12.962 HYPERVISOR: exec_cmd: nio create_udp udp-a73eaa6b-e07c-4ce1-8d20-ab118cb4a410 10158 127.0.0.1 10159 
+May 27 15:42:12.963 HYPERVISOR: exec_cmd: vm slot_add_nio_binding C_Av_2 1 1 udp-a73eaa6b-e07c-4ce1-8d20-ab118cb4a410 
+May 27 15:42:12.964 HYPERVISOR: exec_cmd: vm get_status C_Av_2 
+May 27 15:42:13.296 HYPERVISOR: exec_cmd: nio create_udp udp-87b55292-127f-48b2-a612-2d5113e4f534 10176 127.0.0.1 10177 
+May 27 15:42:13.297 HYPERVISOR: exec_cmd: vm slot_add_nio_binding C_Av_2 1 2 udp-87b55292-127f-48b2-a612-2d5113e4f534 
+May 27 15:42:13.297 HYPERVISOR: exec_cmd: vm get_status C_Av_2 
+May 27 15:42:13.522 HYPERVISOR: exec_cmd: nio create_udp udp-5018343a-9e5b-49b6-bac0-e62c3242645d 10188 127.0.0.1 10189 
+May 27 15:42:13.523 HYPERVISOR: exec_cmd: vm slot_add_nio_binding C_Av_2 1 6 udp-5018343a-9e5b-49b6-bac0-e62c3242645d 
+May 27 15:42:13.523 HYPERVISOR: exec_cmd: vm get_status C_Av_2 
+May 27 15:49:16.937 HYPERVISOR: exec_cmd: vm set_ghost_status C_Av_2 2 
+May 27 15:49:16.938 HYPERVISOR: exec_cmd: vm set_ghost_file C_Av_2 /home/luiscosta/3-Ano/AR/Projeto_Fase2_AR__92996_93134/project-files/dynamips/c3725-advipservicesk9-mz.124-21.image-128.ghost 
+May 27 15:49:16.939 HYPERVISOR: exec_cmd: vm get_status C_Av_2 
+May 27 15:49:16.941 HYPERVISOR: exec_cmd: vm set_config C_Av_2 configs/i6_startup-config.cfg 
+May 27 15:49:16.941 HYPERVISOR: exec_cmd: vm start C_Av_2 
+May 27 15:55:47.309 HYPERVISOR: exec_cmd: vm extract_config C_Av_2 
+May 27 15:55:47.317 HYPERVISOR: exec_cmd: vm extract_config C_Av_2 
+May 27 16:07:47.427 HYPERVISOR: exec_cmd: vm extract_config C_Av_2 
+May 27 16:07:47.438 HYPERVISOR: exec_cmd: vm extract_config C_Av_2 
+May 27 16:25:39.066 HYPERVISOR: exec_cmd: vm get_status C_Av_2 
+May 27 16:25:39.066 HYPERVISOR: exec_cmd: vm stop C_Av_2 
+May 27 16:25:39.310 VM: VM C_Av_2 shutdown.
+May 27 16:25:39.311 HYPERVISOR: exec_cmd: vm extract_config C_Av_2 

@@ -1,0 +1,54 @@
+May 27 15:42:01.711 HYPERVISOR: Release 0.2.21-amd64/Linux (tag 2019071212)
+May 27 15:42:01.711 HYPERVISOR: Started on IP = 127.0.0.1, TCP port = 37915.
+May 27 15:42:01.722 HYPERVISOR: exec_cmd: hypervisor version 
+May 27 15:42:01.723 HYPERVISOR: exec_cmd: hypervisor working_dir /home/luiscosta/3-Ano/AR/Projeto_Fase2_AR__92996_93134/project-files/dynamips 
+May 27 15:42:01.723 GENERAL: working_dir=/home/luiscosta/3-Ano/AR/Projeto_Fase2_AR__92996_93134/project-files/dynamips
+May 27 15:42:01.723 HYPERVISOR: exec_cmd: hypervisor working_dir /home/luiscosta/3-Ano/AR/Projeto_Fase2_AR__92996_93134/project-files/dynamips/ae74bdf1-f50e-478b-a828-5199be2a185a 
+May 27 15:42:01.723 GENERAL: working_dir=/home/luiscosta/3-Ano/AR/Projeto_Fase2_AR__92996_93134/project-files/dynamips/ae74bdf1-f50e-478b-a828-5199be2a185a
+May 27 15:42:01.723 HYPERVISOR: exec_cmd: vm create Av_P_A2 2 c3725 
+May 27 15:42:01.724 VM: VM Av_P_A2 created.
+May 27 15:42:01.724 HYPERVISOR: exec_cmd: vm set_con_tcp_port Av_P_A2 5001 
+May 27 15:42:01.725 HYPERVISOR: exec_cmd: c3725 get_mac_addr Av_P_A2 
+May 27 15:42:01.725 HYPERVISOR: exec_cmd: vm set_disk0 Av_P_A2 1 
+May 27 15:42:01.726 HYPERVISOR: exec_cmd: vm get_status Av_P_A2 
+May 27 15:42:01.726 HYPERVISOR: exec_cmd: vm set_idle_pc Av_P_A2 0x60a68ca0 
+May 27 15:42:01.728 HYPERVISOR: exec_cmd: vm set_ios Av_P_A2 /home/luiscosta/GNS3/images/IOS/c3725-advipservicesk9-mz.124-21.image 
+May 27 15:42:01.728 HYPERVISOR: exec_cmd: c3725 set_mac_addr Av_P_A2 c202.379d.0000 
+May 27 15:42:01.729 HYPERVISOR: exec_cmd: vm set_nvram Av_P_A2 256 
+May 27 15:42:01.730 HYPERVISOR: exec_cmd: vm get_status Av_P_A2 
+May 27 15:42:01.730 HYPERVISOR: exec_cmd: vm slot_add_binding Av_P_A2 1 0 NM-16ESW 
+May 27 15:42:08.309 HYPERVISOR: exec_cmd: nio create_udp udp-abf2b162-b596-4db0-8208-1dec5037d58d 10062 127.0.0.1 10063 
+May 27 15:42:08.529 HYPERVISOR: exec_cmd: vm slot_add_nio_binding Av_P_A2 1 15 udp-abf2b162-b596-4db0-8208-1dec5037d58d 
+May 27 15:42:08.531 HYPERVISOR: exec_cmd: vm get_status Av_P_A2 
+May 27 15:42:12.459 HYPERVISOR: exec_cmd: nio create_udp udp-c6b3eac3-3d18-4464-a6dd-3d11e469a399 10140 127.0.0.1 10141 
+May 27 15:42:12.460 HYPERVISOR: exec_cmd: vm slot_add_nio_binding Av_P_A2 1 0 udp-c6b3eac3-3d18-4464-a6dd-3d11e469a399 
+May 27 15:42:12.461 HYPERVISOR: exec_cmd: vm get_status Av_P_A2 
+May 27 15:42:12.840 HYPERVISOR: exec_cmd: nio create_udp udp-422835af-0aed-4f24-b0bb-62a718d2df5b 10150 127.0.0.1 10151 
+May 27 15:42:12.842 HYPERVISOR: exec_cmd: vm slot_add_nio_binding Av_P_A2 1 1 udp-422835af-0aed-4f24-b0bb-62a718d2df5b 
+May 27 15:42:12.842 HYPERVISOR: exec_cmd: vm get_status Av_P_A2 
+May 27 15:42:13.064 HYPERVISOR: exec_cmd: nio create_udp udp-cda8dbb8-e483-4484-8427-75686f3f20da 10162 127.0.0.1 10163 
+May 27 15:42:13.065 HYPERVISOR: exec_cmd: vm slot_add_nio_binding Av_P_A2 1 2 udp-cda8dbb8-e483-4484-8427-75686f3f20da 
+May 27 15:42:13.066 HYPERVISOR: exec_cmd: vm get_status Av_P_A2 
+May 27 15:49:13.602 HYPERVISOR: exec_cmd: vm create Ghost 0 c3725 
+May 27 15:49:13.602 VM: VM Ghost created.
+May 27 15:49:13.607 HYPERVISOR: exec_cmd: vm set_ios Ghost /home/luiscosta/GNS3/images/IOS/c3725-advipservicesk9-mz.124-21.image 
+May 27 15:49:13.608 HYPERVISOR: exec_cmd: vm set_ghost_status Ghost 1 
+May 27 15:49:13.609 HYPERVISOR: exec_cmd: vm set_ghost_file Ghost /home/luiscosta/3-Ano/AR/Projeto_Fase2_AR__92996_93134/project-files/dynamips/c3725-advipservicesk9-mz.124-21.image-128.ghost 
+May 27 15:49:13.610 HYPERVISOR: exec_cmd: vm get_status Ghost 
+May 27 15:49:13.612 HYPERVISOR: exec_cmd: vm set_config Ghost configs/i0_startup-config.cfg 
+May 27 15:49:13.612 HYPERVISOR: exec_cmd: vm start Ghost 
+May 27 15:49:16.487 HYPERVISOR: exec_cmd: vm get_status Ghost 
+May 27 15:49:16.489 HYPERVISOR: exec_cmd: vm stop Ghost 
+May 27 15:49:16.648 VM: VM Ghost shutdown.
+May 27 15:49:16.649 HYPERVISOR: exec_cmd: vm extract_config Ghost 
+May 27 15:49:16.651 HYPERVISOR: exec_cmd: vm clean_delete Ghost 
+May 27 15:49:16.651 VM: VM Ghost destroyed.
+May 27 15:49:16.654 HYPERVISOR: exec_cmd: vm set_ghost_status Av_P_A2 2 
+May 27 15:49:16.655 HYPERVISOR: exec_cmd: vm set_ghost_file Av_P_A2 /home/luiscosta/3-Ano/AR/Projeto_Fase2_AR__92996_93134/project-files/dynamips/c3725-advipservicesk9-mz.124-21.image-128.ghost 
+May 27 15:49:16.656 HYPERVISOR: exec_cmd: vm get_status Av_P_A2 
+May 27 15:49:16.657 HYPERVISOR: exec_cmd: vm set_config Av_P_A2 configs/i2_startup-config.cfg 
+May 27 15:49:16.658 HYPERVISOR: exec_cmd: vm start Av_P_A2 
+May 27 16:25:38.865 HYPERVISOR: exec_cmd: vm get_status Av_P_A2 
+May 27 16:25:38.866 HYPERVISOR: exec_cmd: vm stop Av_P_A2 
+May 27 16:25:39.038 VM: VM Av_P_A2 shutdown.
+May 27 16:25:39.043 HYPERVISOR: exec_cmd: vm extract_config Av_P_A2 

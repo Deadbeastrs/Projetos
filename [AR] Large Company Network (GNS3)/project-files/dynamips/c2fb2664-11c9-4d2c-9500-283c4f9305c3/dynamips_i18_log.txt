@@ -1,0 +1,55 @@
+May 22 21:14:55.153 HYPERVISOR: Release 0.2.21-amd64/Linux (tag 2019071212)
+May 22 21:14:55.153 HYPERVISOR: Started on IP = 127.0.0.1, TCP port = 49047.
+May 22 21:14:55.163 HYPERVISOR: exec_cmd: hypervisor version 
+May 22 21:14:55.164 HYPERVISOR: exec_cmd: hypervisor working_dir /home/luiscosta/3-Ano/AR/Projeto_Fase2_AR__92996_93134/project-files/dynamips 
+May 22 21:14:55.164 GENERAL: working_dir=/home/luiscosta/3-Ano/AR/Projeto_Fase2_AR__92996_93134/project-files/dynamips
+May 22 21:14:55.164 HYPERVISOR: exec_cmd: hypervisor working_dir /home/luiscosta/3-Ano/AR/Projeto_Fase2_AR__92996_93134/project-files/dynamips/1e3b3708-467c-48b9-b8a9-dc0bdffcc999 
+May 22 21:14:55.164 GENERAL: working_dir=/home/luiscosta/3-Ano/AR/Projeto_Fase2_AR__92996_93134/project-files/dynamips/1e3b3708-467c-48b9-b8a9-dc0bdffcc999
+May 22 21:14:55.164 HYPERVISOR: exec_cmd: vm create ISP-PT2-Lis 9 c7200 
+May 22 21:14:55.164 VM: VM ISP-PT2-Lis created.
+May 22 21:14:55.165 HYPERVISOR: exec_cmd: vm set_con_tcp_port ISP-PT2-Lis 5020 
+May 22 21:14:55.165 HYPERVISOR: exec_cmd: c7200 get_mac_addr ISP-PT2-Lis 
+May 22 21:14:55.165 HYPERVISOR: exec_cmd: vm get_status ISP-PT2-Lis 
+May 22 21:14:55.165 HYPERVISOR: exec_cmd: vm slot_add_binding ISP-PT2-Lis 0 0 C7200-IO-FE 
+May 22 21:14:55.166 HYPERVISOR: exec_cmd: vm set_disk0 ISP-PT2-Lis 0 
+May 22 21:14:55.166 HYPERVISOR: exec_cmd: vm get_status ISP-PT2-Lis 
+May 22 21:14:55.166 HYPERVISOR: exec_cmd: vm set_idle_pc ISP-PT2-Lis 0x60608040 
+May 22 21:14:55.167 HYPERVISOR: exec_cmd: vm set_ios ISP-PT2-Lis /home/luiscosta/GNS3/images/IOS/c7200-adventerprisek9-mz.151-4.M2.image 
+May 22 21:14:55.167 HYPERVISOR: exec_cmd: c7200 set_mac_addr ISP-PT2-Lis ca09.d12d.0000 
+May 22 21:14:55.168 HYPERVISOR: exec_cmd: vm set_nvram ISP-PT2-Lis 512 
+May 22 21:14:55.168 HYPERVISOR: exec_cmd: vm set_ram ISP-PT2-Lis 512 
+May 22 21:14:55.169 HYPERVISOR: exec_cmd: vm get_status ISP-PT2-Lis 
+May 22 21:14:55.169 HYPERVISOR: exec_cmd: vm slot_remove_binding ISP-PT2-Lis 0 0 
+May 22 21:14:55.169 HYPERVISOR: exec_cmd: vm get_status ISP-PT2-Lis 
+May 22 21:14:55.169 HYPERVISOR: exec_cmd: vm slot_add_binding ISP-PT2-Lis 0 0 C7200-IO-2FE 
+May 22 21:14:55.170 HYPERVISOR: exec_cmd: vm get_status ISP-PT2-Lis 
+May 22 21:14:55.170 HYPERVISOR: exec_cmd: vm slot_add_binding ISP-PT2-Lis 1 0 PA-2FE-TX 
+May 22 21:14:55.170 HYPERVISOR: exec_cmd: vm get_status ISP-PT2-Lis 
+May 22 21:14:55.171 HYPERVISOR: exec_cmd: vm slot_add_binding ISP-PT2-Lis 2 0 PA-2FE-TX 
+May 22 21:14:55.171 HYPERVISOR: exec_cmd: vm set_con_tcp_port ISP-PT2-Lis 5020 
+May 22 21:15:02.523 HYPERVISOR: exec_cmd: nio create_udp udp-143a0eba-be5d-45aa-8795-85e982f593dd 10148 127.0.0.1 10149 
+May 22 21:15:02.741 HYPERVISOR: exec_cmd: vm slot_add_nio_binding ISP-PT2-Lis 0 0 udp-143a0eba-be5d-45aa-8795-85e982f593dd 
+May 22 21:15:02.742 HYPERVISOR: exec_cmd: vm get_status ISP-PT2-Lis 
+May 22 21:15:04.404 HYPERVISOR: exec_cmd: nio create_udp udp-6d1f0108-e2fa-41c6-b2ad-7525fb61163d 10172 127.0.0.1 10173 
+May 22 21:15:04.405 HYPERVISOR: exec_cmd: vm slot_add_nio_binding ISP-PT2-Lis 0 1 udp-6d1f0108-e2fa-41c6-b2ad-7525fb61163d 
+May 22 21:15:04.406 HYPERVISOR: exec_cmd: vm get_status ISP-PT2-Lis 
+May 22 21:15:44.948 HYPERVISOR: exec_cmd: vm set_ghost_status ISP-PT2-Lis 2 
+May 22 21:15:44.949 HYPERVISOR: exec_cmd: vm set_ghost_file ISP-PT2-Lis /home/luiscosta/3-Ano/AR/Projeto_Fase2_AR__92996_93134/project-files/dynamips/c7200-adventerprisek9-mz.151-4.M2.image-512.ghost 
+May 22 21:15:44.952 HYPERVISOR: exec_cmd: vm get_status ISP-PT2-Lis 
+May 22 21:15:44.952 HYPERVISOR: exec_cmd: vm set_config ISP-PT2-Lis configs/i9_startup-config.cfg 
+May 22 21:15:44.953 HYPERVISOR: exec_cmd: vm start ISP-PT2-Lis 
+May 22 21:16:15.158 HYPERVISOR: exec_cmd: vm extract_config ISP-PT2-Lis 
+May 22 21:16:45.160 HYPERVISOR: exec_cmd: vm extract_config ISP-PT2-Lis 
+May 22 22:21:02.287 HYPERVISOR: exec_cmd: vm get_status ISP-PT2-Lis 
+May 22 22:21:02.287 HYPERVISOR: exec_cmd: vm stop ISP-PT2-Lis 
+May 22 22:21:02.384 VM: VM ISP-PT2-Lis shutdown.
+May 22 22:21:02.385 HYPERVISOR: exec_cmd: vm extract_config ISP-PT2-Lis 
+May 22 22:21:08.053 HYPERVISOR: exec_cmd: vm get_status ISP-PT2-Lis 
+May 22 22:21:08.054 HYPERVISOR: exec_cmd: vm extract_config ISP-PT2-Lis 
+May 22 22:21:08.169 HYPERVISOR: exec_cmd: vm get_status ISP-PT2-Lis 
+May 22 22:21:08.169 HYPERVISOR: exec_cmd: vm extract_config ISP-PT2-Lis 
+May 22 22:21:08.170 HYPERVISOR: exec_cmd: vm delete ISP-PT2-Lis 
+May 22 22:21:08.170 VM: VM ISP-PT2-Lis destroyed.
+May 22 22:21:08.170 HYPERVISOR: exec_cmd: hypervisor stop 
+May 22 22:21:08.186 HYPERVISOR: Stopped.
+May 22 22:21:08.186 GENERAL: reset done.
